@@ -3,6 +3,7 @@ package com.latihan.applicationtodo;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class MainFragment extends Fragment {
     List<Todo> list = new ArrayList<Todo>();
-    TodoAdapter toDoAdapter;
+    TodoAdapter todoAdapter;
     DataBaseHelper myDb;
     RecyclerView rvTodo;
     Button fabAdd;
@@ -41,7 +42,13 @@ public class MainFragment extends Fragment {
 
         myDb = new DataBaseHelper(getActivity());
         rvTodo = view.findViewById(R.id.rvTodo);
-return  view;
+        todoAdapter = new TodoAdapter(getActivity(),list);
+
+        list.addAll(myDb.getAllData());
+        todoAdapter.notifyDataSetChanged();
+        rvTodo.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvTodo.setAdapter(todoAdapter);
+        return  view;
     }
 
 }

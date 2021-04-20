@@ -1,5 +1,7 @@
 package com.latihan.applicationtodo;
 
+import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,58 +9,119 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class AddFragment extends Fragment {
+    EditText edtName, edtStatus, edtDate;
+    Button btnSubmit, btnCancel;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    DataBaseHelper myDb;
+    DatePickerDialog.OnDateSetListener date;
+    Calendar myCalendar;
 
     public AddFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddFragment newInstance(String param1, String param2) {
-        AddFragment fragment = new AddFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add2, container, false);
+        View view = inflater.inflate(R.layout.fragment_add2, container, false);
+        edtName = view.findViewById(R.id.edtName);
+        edtStatus = view.findViewById(R.id.edtStatus);
+        edtDate = view.findViewById(R.id.edtTgl);
+
+        btnCancel = view.findViewById(R.id.btncancleke);
+        btnSubmit = view.findViewById(R.id.btn_buatKegiatan);
+
+        myDb = new DataBaseHelper(getActivity());
+        myCalendar = Calendar.getInstance();
+
+        date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();//memanggil fungsi updateLable
+            }
+        };
+
+        edtDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(getActivity(), date,
+                        myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = edtName.getText().toString();
+                String status = edtStatus.getText().toString();
+                String date = edtDate.getText().toString();
+                if (name.equals("") || status.equals("") || date.equals("")) {
+                    if (name.equals("")) {
+                        edtName.setError("judul Harus di isi");
+                    }
+                    if (status.equals("")) {
+                        edtStatus.setError("deskripsi Harus di isi");
+                    }
+                    if (date.equals("")) {
+                        edtDate.setError("tanggal Harus di isi");
+                    }
+
+                } else {
+                    boolean isInserted = myDb.insertData(name, status, date);
+                    if (isInserted) {
+                        Toast.makeText(getActivity(), "data berhasil di tambahkan", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), "data gagal di tambahkan ", Toast.LENGTH_SHORT).show();
+                    }
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+                    getActivity();
+                }
+
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MainActivity.class));
+                getActivity().finish();
+            }
+        });
+        return view;
     }
+    private void AddData(){
+
+    }
+
+    //untuk mengupdate tanggal
+    private  void updateLabel(){
+        String myFormat = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(myFormat, Locale.US);
+        edtDate.setText(simpleDateFormat.format(myCalendar.getTime()));
+    }
+
 }
