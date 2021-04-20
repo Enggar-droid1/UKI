@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="judul kegiatan"
+            android:text="Nama kegiatan"
             android:textSize="12sp"
             android:layout_marginBottom="5dp"/>
 
@@ -32,30 +32,38 @@
             android:id="@+id/edtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" apa yang akan kamu lakukan ?"
-            android:textColorHint="@color/black"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:hint="Apa nama kegiatan tersebut?"
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deskripsi"
+            android:text="Status"
             android:textSize="12sp"
             android:layout_marginBottom="5dp"/>
 
-        <EditText
-            android:id="@+id/edtStatus"
-            android:layout_width="match_parent"
+        <RadioGroup
+            android:id="@+id/Rd_edtstatus"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint=" apa yang akan kamu lakukan ?"
-            android:textSize="16sp"
-            android:layout_marginBottom="10dp"/>
+            android:orientation="horizontal">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_marginRight="12dp"
+                android:text="Sudah dilaksanakan"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Belum dilaksanakan"/>
+        </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tanggal"
+            android:text="Dilaksanakan Pada"
             android:textSize="12sp"
             android:layout_marginBottom="5dp"/>
 
@@ -63,8 +71,8 @@
             android:id="@+id/edtTgl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" apa yang akan kamu lakukan ?"
-            android:textSize="16sp"
+            android:hint=" Kapan kegiatan tersebut dilaksanakan ?"
+            android:textSize="14sp"
             android:layout_marginBottom="10dp"/>
 
         <Button
