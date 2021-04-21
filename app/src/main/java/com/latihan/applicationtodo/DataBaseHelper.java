@@ -113,6 +113,26 @@ class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public List<Todo> search(String keyword) {
+        List<Todo> todos = new ArrayList<>();
+        String selectQuery = "SELECT * FROM TODO_TABLE WHERE NAME LIKE ?";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, new String[]{"%" + keyword + "%"});
+        if (cursor.moveToFirst()) {
+            do {
+                Todo todo = new Todo();
+                todo.setNametodo(cursor.getString(1));
+                todo.setStatustodo(cursor.getString(2));
+                todo.setDatetodo(cursor.getString(3));
+                todo.setIdtodo(cursor.getString(0));
+                todos.add(todo);
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return todos;
+    }
+
+
     public int deleteData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
 

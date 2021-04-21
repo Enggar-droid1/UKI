@@ -63,6 +63,8 @@ public class AddFragment extends Fragment {
             }
         };
 
+
+
         edtDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +113,8 @@ public class AddFragment extends Fragment {
             }
         });
 
+
+
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,6 +123,8 @@ public class AddFragment extends Fragment {
             }
         });
         return view;
+
+
     }
     private void AddData(){
 
