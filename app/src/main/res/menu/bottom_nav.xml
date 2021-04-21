@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="Home" />
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:title="Lihat Tugas" />
     <item
         android:id="@+id/edit"
-        android:icon="@drawable/ic_baseline_edit_24"
-        android:title="Edit" />
+        android:icon="@drawable/ic_baseline_playlist_add_24"
+        android:title="Tambah Tugas" />
 </menu>

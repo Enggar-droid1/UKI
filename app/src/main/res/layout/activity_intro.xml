@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".intro.IntroActivity">
+    tools:context=".Dashboard.IntroActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/screen_viewpager"
@@ -26,7 +26,7 @@
         android:background="#fff"
         android:drawableRight="@drawable/ic_baseline_arrow_forward_24"
         android:drawableTint="@color/gradient_start_color"
-        android:text="Next"
+        android:text="Selanjutnya"
         android:textColor="@color/gradient_start_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -49,7 +49,6 @@
     </com.google.android.material.tabs.TabLayout>
 
     <Button
-        android:visibility="invisible"
         android:id="@+id/btn_get_started"
         android:layout_width="132dp"
         android:layout_height="wrap_content"
@@ -59,23 +58,24 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="64dp"
         android:background="@drawable/btn_gradient_style"
-        android:text="Get Started"
+        android:text="Mulai"
         android:textColor="#fff"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#2d2d2d"
         android:id="@+id/tv_skip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginRight="24dp"
-        android:text="Skip"
+        android:text="Lewati"
+        android:textColor="#2d2d2d"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

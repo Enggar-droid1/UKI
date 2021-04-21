@@ -1,4 +1,4 @@
-package com.latihan.applicationtodo.intro;
+package com.latihan.applicationtodo.Dashboard;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -23,26 +23,27 @@ import java.util.List;
 
 public class IntroActivity extends AppCompatActivity {
 
+    //untuk mendeklarasikan semua variable yang dibutuhkan
+
     private ViewPager screenPager;
     IntroViewPagerAdapter introViewPagerAdapter ;
     TabLayout tabIndicator;
-    Button btnNext;
     int position = 0 ;
-    Button btnGetStarted;
+    Button btnMulai, btnSelanjutnya;
     Animation btnAnim ;
     TextView tvSkip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // make the activity on full screen
+        // membuat activity full screen
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        // when this activity is about to be launch we need to check if its openened before or not
+        // ketika aktivitas ini akan diluncurkan, memeriksa apakah sudah dibuka sebelumnya atau tidak
 
         if (restorePrefData()) {
 
@@ -53,36 +54,35 @@ public class IntroActivity extends AppCompatActivity {
 
         }
         setContentView(R.layout.activity_intro);
-        // hide the action bar
+        // menyembunyikan bilah tindakan
 
         getSupportActionBar().hide();
 
         // ini views
-        btnNext = findViewById(R.id.btn_next);
-        btnGetStarted = findViewById(R.id.btn_get_started);
+        btnSelanjutnya = findViewById(R.id.btn_next);
+        btnMulai = findViewById(R.id.btn_get_started);
         tabIndicator = findViewById(R.id.tab_indicator);
         btnAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.button_animation);
         tvSkip = findViewById(R.id.tv_skip);
 
-        // fill list screen
+        // mengisi layar daftar
 
         final List<ItemScreen> mList = new ArrayList<>();
-        mList.add(new ItemScreen("Fresh Food","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.img1));
-        mList.add(new ItemScreen("Fast Delivery","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.img2));
-        mList.add(new ItemScreen("Easy Payment","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit",R.drawable.img3));
+        mList.add(new ItemScreen("Selamat Datang ","Di aplikais Todo Duty, dengan Aplikasi ini anda dapat mencatat tugas sehari-harimu  ",R.drawable.image1));
+        mList.add(new ItemScreen("Apa yang bisa di lakukan aplikasi ini?","Aplikasi bisa mengedit, menghapus, membuat, dan mencaricatat tugas sehari-harimu ",R.drawable.image2));
 
-        // setup viewpager
+        // atur viewpager
         screenPager =findViewById(R.id.screen_viewpager);
         introViewPagerAdapter = new IntroViewPagerAdapter(this,mList);
         screenPager.setAdapter(introViewPagerAdapter);
 
-        // setup tablayout with viewpager
+        // setup tablayout dengan viewpager
 
         tabIndicator.setupWithViewPager(screenPager);
 
-        // next button click Listner
+        // button selanjutnya
 
-        btnNext.setOnClickListener(new View.OnClickListener() {
+        btnSelanjutnya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -109,7 +109,7 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
 
-        // tablayout add change listener
+        // tablayout menambahkan perubahan
 
 
         tabIndicator.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
@@ -138,20 +138,19 @@ public class IntroActivity extends AppCompatActivity {
 
 
 
-        // Get Started button click listener
+        // button mulai
 
-        btnGetStarted.setOnClickListener(new View.OnClickListener() {
+        btnMulai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-                //open main activity
+                //membuka main activity
 
                 Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(mainActivity);
-                // also we need to save a boolean value to storage so next time when the user run the app
-                // we could know that he is already checked the intro screen activity
-                // i'm going to use shared preferences to that process
+                // kita juga perlu menyimpan nilai boolean ke penyimpanan sehingga lain kali saat pengguna menjalankan aplikasi
+                // kita bisa tahu bahwa dia sudah memeriksa aktivitas layar intro
                 savePrefsData();
                 finish();
 
@@ -160,7 +159,7 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
 
-        // skip button click listener
+        // Button Lewati
 
         tvSkip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,16 +193,16 @@ public class IntroActivity extends AppCompatActivity {
 
     }
 
-    // show the GETSTARTED Button and hide the indicator and the next button
+    // menuunjukkan Tombol GETSTARTED dan menyembunyikan indikator dan tombol selanjutnya
     private void loaddLastScreen() {
 
-        btnNext.setVisibility(View.INVISIBLE);
-        btnGetStarted.setVisibility(View.VISIBLE);
+        btnSelanjutnya.setVisibility(View.INVISIBLE);
+        btnMulai.setVisibility(View.VISIBLE);
         tvSkip.setVisibility(View.INVISIBLE);
         tabIndicator.setVisibility(View.INVISIBLE);
         // TODO : ADD an animation the getstarted button
-        // setup animation
-        btnGetStarted.setAnimation(btnAnim);
+        // penyiapan animasi
+        btnMulai.setAnimation(btnAnim);
 
 
 

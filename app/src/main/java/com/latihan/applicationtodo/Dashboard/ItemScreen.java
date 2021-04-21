@@ -1,4 +1,4 @@
-package com.latihan.applicationtodo.intro;
+package com.latihan.applicationtodo.Dashboard;
 
 public class ItemScreen { String Title,Description;
     int ScreenImg;

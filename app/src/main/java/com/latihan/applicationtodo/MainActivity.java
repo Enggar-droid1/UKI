@@ -26,14 +26,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getFragmentPage(new MainFragment());
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.menu_bawah);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.dasboard);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 Fragment fragment = null;
 
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.home:
                         fragment = new MainFragment();
                         break;
@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean getFragmentPage(Fragment fragment) {
-        if (fragment != null){
+        if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.page_container,fragment)
+                    .replace(R.id.page_container, fragment)
                     .commit();
             return true;
         }

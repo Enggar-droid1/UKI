@@ -1,4 +1,4 @@
-package com.latihan.applicationtodo.intro;
+package com.latihan.applicationtodo.Dashboard;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,6 +15,7 @@ import com.latihan.applicationtodo.R;
 import java.util.List;
 
 public class IntroViewPagerAdapter extends PagerAdapter {
+    //untuk mendeklarasikan semua variable yang dibutuhkan
     Context mContext ;
     List<ItemScreen> mListScreen;
 
@@ -23,7 +24,7 @@ public class IntroViewPagerAdapter extends PagerAdapter {
         this.mListScreen = mListScreen;
     }
 
-
+        //unutuk memanggil data di Introactivity
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {

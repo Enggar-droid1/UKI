@@ -6,13 +6,16 @@
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".AddFragment">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tambah kegiatan"
+        android:text="Tambah Tugas"
         android:textAlignment="center"
-        android:textSize="22sp" android:textStyle="bold"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,71 +25,72 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="judul kegiatan"
-            android:textSize="12sp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:text="Nama tugas"
+            android:textSize="12sp" />
 
         <EditText
             android:id="@+id/addName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" apa nama kegiatan tersebut ?"
-            android:textSize="14sp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Deskripsi"
-            android:textSize="12sp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:text="Status Tugas"
+            android:textSize="12sp" />
 
         <RadioGroup
-            android:id="@+id/Rd_addstatus"
+            android:id="@+id/RdAddstatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <RadioButton
                 android:id="@+id/sudah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
                 android:layout_marginRight="12dp"
-                android:text="Sudah dilaksanakan"/>
+                android:checked="true"
+                android:text="Sudah dikerjakan" />
+
             <RadioButton
                 android:id="@+id/belum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Belum dilaksanakan"/>
+                android:text="Belum dikerjakan" />
         </RadioGroup>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:text="Tanggal"
-            android:textSize="12sp"
-            android:layout_marginBottom="5dp"/>
+            android:textSize="12sp" />
 
         <EditText
-            android:id="@+id/addtTgl"
+            android:id="@+id/addtTanggal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" Kapan kegiatan tersebut dilaksanakan ?"
-            android:textSize="14sp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:textSize="14sp" />
 
         <Button
-            android:id="@+id/btn_buatKegiatan"
+            android:id="@+id/btnTambahTugs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Buat Kegiatan"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:text="Tambah tugas" />
+
         <Button
-            android:id="@+id/btncancleke"
+            android:id="@+id/btnCancle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="cancel"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:text="cancel" />
 
     </LinearLayout>
 </LinearLayout>

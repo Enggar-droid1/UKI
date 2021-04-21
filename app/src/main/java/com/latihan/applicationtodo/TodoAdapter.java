@@ -29,6 +29,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
         return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_todo, parent, false));
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.nametodo.setText(todo.get(position).getNametodo());
@@ -40,11 +41,13 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
         final String getDateTodo = todo.get(position).getDatetodo();
         final String getIdTodo = todo.get(position).getIdtodo();
 
+
+        //untuk mengubah integer pada status agar menjadi string pada item_todo atau pada saat di tampilkan
         if (todo.get(position).getStatustodo().equals("0")) {
-            holder.statustodo.setText("Belum dilakukan");
+            holder.statustodo.setText("Belum dikerjakan");
         } else {
             if (todo.get(position).getStatustodo().equals("1")) {
-                holder.statustodo.setText("Sudah dilakukan");
+                holder.statustodo.setText("Sudah dikerjakan");
             }
 
         }
@@ -75,9 +78,9 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            nametodo = ( TextView ) itemView.findViewById(R.id.tvNama);
-            statustodo = ( TextView ) itemView.findViewById(R.id.tvStatus);
-            datetodo = ( TextView ) itemView.findViewById(R.id.tvDate);
+            nametodo = (TextView) itemView.findViewById(R.id.tvNama);
+            statustodo = (TextView) itemView.findViewById(R.id.tvStatus);
+            datetodo = (TextView) itemView.findViewById(R.id.tvDate);
 
         }
     }

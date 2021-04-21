@@ -15,13 +15,12 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class AddFragment extends Fragment {
+    //untuk mendeklarasikan semua variable yang dibutuhkan
     EditText edtName, edtDate;
     Button btnSubmit, btnCancel;
     DataBaseHelper myDb;
@@ -29,7 +28,6 @@ public class AddFragment extends Fragment {
     Calendar myCalendar;
 
     public AddFragment() {
-        // Required empty public constructor
     }
 
 
@@ -42,17 +40,17 @@ public class AddFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add2, container, false);
+        View view = inflater.inflate(R.layout.fragment_add, container, false);
         edtName = view.findViewById(R.id.addName);
-        edtDate = view.findViewById(R.id.addtTgl);
+        edtDate = view.findViewById(R.id.addtTanggal);
 
-        btnCancel = view.findViewById(R.id.btncancleke);
-        btnSubmit = view.findViewById(R.id.btn_buatKegiatan);
+        btnCancel = view.findViewById(R.id.btnCancle);
+        btnSubmit = view.findViewById(R.id.btnTambahTugs);
 
         myDb = new DataBaseHelper(getActivity());
         myCalendar = Calendar.getInstance();
 
+        //untuk menyesuaikan kalender pada device yang di gunakan
         date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -62,9 +60,7 @@ public class AddFragment extends Fragment {
                 updateLabel();//memanggil fungsi updateLable
             }
         };
-
-
-
+        //agar saat edittext di klik dua kali dapat muncul from tanggal
         edtDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +70,9 @@ public class AddFragment extends Fragment {
             }
         });
 
-        final RadioGroup rgkegiatan =(RadioGroup)view.findViewById(R.id.Rd_addstatus);
+        final RadioGroup rgkegiatan = (RadioGroup) view.findViewById(R.id.RdAddstatus);
+
+        //button submit
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,29 +80,32 @@ public class AddFragment extends Fragment {
                 String status = "";
 
                 int id = rgkegiatan.getCheckedRadioButtonId();
-                switch (id){
-                    case R.id.sudah :
+                switch (id) {
+                    case R.id.sudah:
                         status = "0";
                         break;
-                    case R.id.belum :
+                    case R.id.belum:
                         status = "1";
                         break;
                 }
+
+                //untuk menampilkan peringatan di edittext
                 String date = edtDate.getText().toString();
                 if (name.equals("") || date.equals("")) {
                     if (name.equals("")) {
-                        edtName.setError("judul Harus di isi");
+                        edtName.setError("nama tugas tidak boleh kosong");
                     }
                     if (date.equals("")) {
-                        edtDate.setError("tanggal Harus di isi");
+                        edtDate.setError("tanggal tugas tidak boleh kosong");
                     }
 
                 } else {
+                    //untuk menampilkan toast saat data di submit
                     boolean isInserted = myDb.insertData(name, status, date);
                     if (isInserted) {
-                        Toast.makeText(getActivity(), "data berhasil di tambahkan", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Tugas berhasil di tambah", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getActivity(), "data gagal di tambahkan ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Tugas gagal di tambah", Toast.LENGTH_SHORT).show();
                     }
                     startActivity(new Intent(getActivity(), MainActivity.class));
                     getActivity();
@@ -113,8 +114,7 @@ public class AddFragment extends Fragment {
             }
         });
 
-
-
+        //button cancel
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,12 +126,13 @@ public class AddFragment extends Fragment {
 
 
     }
-    private void AddData(){
+
+    private void AddData() {
 
     }
 
     //untuk mengupdate tanggal
-    private  void updateLabel(){
+    private void updateLabel() {
         String myFormat = "dd-MM-yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(myFormat, Locale.US);
         edtDate.setText(simpleDateFormat.format(myCalendar.getTime()));

@@ -11,7 +11,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.ArrayList;
@@ -19,6 +18,8 @@ import java.util.List;
 
 
 public class MainFragment extends Fragment {
+
+    //untuk mendeklarasikan semua variable yang dibutuhkan
     List<Todo> list = new ArrayList<Todo>();
     TodoAdapter todoAdapter;
     DataBaseHelper myDb;
@@ -41,8 +42,8 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main2, container, false);
-        editSearch = view.findViewById(R.id.searchView);
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        editSearch = view.findViewById(R.id.search);
         myDb = new DataBaseHelper(getActivity());
         rvTodo = view.findViewById(R.id.rvTodo);
         todoAdapter = new TodoAdapter(getActivity(), list);
@@ -52,6 +53,8 @@ public class MainFragment extends Fragment {
         rvTodo.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvTodo.setAdapter(todoAdapter);
 
+
+        //untuk mecari data
         editSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence S, int start, int count, int after) {
@@ -65,12 +68,12 @@ public class MainFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (editSearch.length() != 0){
+                if (editSearch.length() != 0) {
                     List<Todo> todoSearch = myDb.search(editSearch.getText().toString().trim());
                     if (todoSearch != null) {
                         rvTodo.setAdapter(new TodoAdapter(getActivity(), todoSearch));
                     }
-                }else{
+                } else {
                     List<Todo> todoSearch = myDb.getAllData();
                     if (todoSearch != null) {
                         rvTodo.setAdapter(new TodoAdapter(getActivity(), todoSearch));
@@ -81,22 +84,6 @@ public class MainFragment extends Fragment {
 
         return view;
 
-//            @Override
-//            public void afterTextChanged(Editable S) {
-//                if (editSearch.length() != 0) {
-//                    List<Todo> todoSearch = myDb.search(editSearch.getText().toString().trim());
-//                    if (todoSearch != null) {
-//                        rvTodo.setAdapter(new TodoAdapter(getActivity(), todoSearch));
-//                    }
-//                } else {
-//                    List<Todo> todoSearch = myDb.getAllData();
-//                    if (todoSearch != null) {
-//                        rvTodo.setAdapter(new TodoAdapter(getActivity(), todoSearch));
-//                    }
-//                }
-//            }
-//        });
-//        return view;
     }
 
 }

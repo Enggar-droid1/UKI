@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#16000000"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <FrameLayout
@@ -15,7 +15,7 @@
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/menu_bawah"
+            android:id="@+id/dasboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
