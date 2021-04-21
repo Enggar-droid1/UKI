@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,9 +22,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class AddFragment extends Fragment {
-    EditText edtName, edtStatus, edtDate;
+    EditText edtName, edtDate;
     Button btnSubmit, btnCancel;
-
     DataBaseHelper myDb;
     DatePickerDialog.OnDateSetListener date;
     Calendar myCalendar;
@@ -44,9 +44,8 @@ public class AddFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add2, container, false);
-        edtName = view.findViewById(R.id.edtName);
-        edtStatus = view.findViewById(R.id.edtStatus);
-        edtDate = view.findViewById(R.id.edtTgl);
+        edtName = view.findViewById(R.id.addName);
+        edtDate = view.findViewById(R.id.addtTgl);
 
         btnCancel = view.findViewById(R.id.btncancleke);
         btnSubmit = view.findViewById(R.id.btn_buatKegiatan);
@@ -73,18 +72,26 @@ public class AddFragment extends Fragment {
             }
         });
 
+        final RadioGroup rgkegiatan =(RadioGroup)view.findViewById(R.id.Rd_addstatus);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = edtName.getText().toString();
-                String status = edtStatus.getText().toString();
+                String status = "";
+
+                int id = rgkegiatan.getCheckedRadioButtonId();
+                switch (id){
+                    case R.id.sudah :
+                        status = "0";
+                        break;
+                    case R.id.belum :
+                        status = "1";
+                        break;
+                }
                 String date = edtDate.getText().toString();
-                if (name.equals("") || status.equals("") || date.equals("")) {
+                if (name.equals("") || date.equals("")) {
                     if (name.equals("")) {
                         edtName.setError("judul Harus di isi");
-                    }
-                    if (status.equals("")) {
-                        edtStatus.setError("deskripsi Harus di isi");
                     }
                     if (date.equals("")) {
                         edtDate.setError("tanggal Harus di isi");

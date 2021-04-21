@@ -73,7 +73,7 @@ class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     //metode untuk mengambil data
-    public  boolean insertData(String name, String status, String date){
+    public  boolean insertData( String name, String status, String date){
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();

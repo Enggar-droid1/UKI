@@ -1,4 +1,5 @@
 package com.latihan.applicationtodo;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -25,7 +26,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_todo,parent,false));
+        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.item_todo, parent, false));
     }
 
     @Override
@@ -34,19 +35,29 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
         holder.statustodo.setText(todo.get(position).getStatustodo());
         holder.datetodo.setText(todo.get(position).getDatetodo());
 
-        final String getNameTodo= todo.get(position).getNametodo();
-        final String getStatustodo= todo.get(position).getStatustodo();
-        final String getDateTodo= todo.get(position).getDatetodo();
-        final String getIdTodo= todo.get(position).getIdtodo();
+        final String getNameTodo = todo.get(position).getNametodo();
+        final String getStatustodo = todo.get(position).getStatustodo();
+        final String getDateTodo = todo.get(position).getDatetodo();
+        final String getIdTodo = todo.get(position).getIdtodo();
+
+        if (todo.get(position).getStatustodo().equals("0")) {
+            holder.statustodo.setText("Belum dilakukan");
+        } else {
+            if (todo.get(position).getStatustodo().equals("1")) {
+                holder.statustodo.setText("Sudah dilakukan");
+            }
+
+        }
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(context, EditData.class);
-                i.putExtra("nametodo",getNameTodo);
-                i.putExtra("statustodo",getStatustodo);
-                i.putExtra("datetodo",getDateTodo);
-                i.putExtra("idtodo",getIdTodo);
+                i.putExtra("nametodo", getNameTodo);
+                i.putExtra("statustodo", getStatustodo);
+                i.putExtra("datetodo", getDateTodo);
+                i.putExtra("idtodo", getIdTodo);
                 context.startActivity(i);
             }
         });
@@ -60,13 +71,13 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView nametodo,statustodo,datetodo;
+        TextView nametodo, statustodo, datetodo;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            nametodo= (TextView)itemView.findViewById(R.id.tvNama);
-            statustodo= (TextView)itemView.findViewById(R.id.tvStatus);
-            datetodo= (TextView)itemView.findViewById(R.id.tvDate);
+            nametodo = ( TextView ) itemView.findViewById(R.id.tvNama);
+            statustodo = ( TextView ) itemView.findViewById(R.id.tvStatus);
+            datetodo = ( TextView ) itemView.findViewById(R.id.tvDate);
 
         }
     }

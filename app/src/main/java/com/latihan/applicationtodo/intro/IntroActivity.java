@@ -1,4 +1,4 @@
-package com.latihan.applicationtodo;
+package com.latihan.applicationtodo.intro;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
+import com.latihan.applicationtodo.MainActivity;
+import com.latihan.applicationtodo.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +46,7 @@ public class IntroActivity extends AppCompatActivity {
 
         if (restorePrefData()) {
 
-            Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class );
+            Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class );
             startActivity(mainActivity);
             finish();
 

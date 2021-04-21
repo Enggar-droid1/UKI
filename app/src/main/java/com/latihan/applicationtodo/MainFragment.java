@@ -20,7 +20,6 @@ public class MainFragment extends Fragment {
     TodoAdapter todoAdapter;
     DataBaseHelper myDb;
     RecyclerView rvTodo;
-    Button fabAdd;
 
 
     public MainFragment() {

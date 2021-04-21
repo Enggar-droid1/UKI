@@ -14,8 +14,10 @@ import java.util.Locale;
 
 public class EditData extends AppCompatActivity {
 
-    EditText edtName,edtStatus,edtDate;
+    EditText edtName,edtDate;
     Button btnUpdate,btnDelete;
+    RadioGroup edtStatus;
+    RadioButton RbBelum, RbSudah;
     DatePickerDialog.OnDateSetListener date;
     Calendar myCalendar;
     DataBaseHelper myDb;
@@ -26,18 +28,25 @@ public class EditData extends AppCompatActivity {
         setContentView(R.layout.activity_edit_data);
 
         edtName =  findViewById(R.id.edtName);
-        edtStatus =  findViewById(R.id.edtStatus);
+        edtStatus =  findViewById(R.id.Rd_edtstatus);
+        RbBelum = findViewById(R.id.Rb_edtBelum);
+        RbSudah = findViewById(R.id.Rb_edtSudah);
         edtDate =  findViewById(R.id.edtTgl);
         btnDelete =  findViewById(R.id.btndelete);
         btnUpdate=  findViewById(R.id.btnupdate);
 
         edtName.setText(getIntent().getStringExtra("titletodo"));
-        edtStatus.setText(getIntent().getStringExtra("desctodo"));
+        String status = getIntent().getStringExtra("statustodo");
         edtDate.setText(getIntent().getStringExtra("datetodo"));
 
         myDb = new DataBaseHelper(this);
         myCalendar = Calendar.getInstance();
 
+        if (status.equals("0")){
+            RbBelum.setChecked(true);
+        }else{
+            RbSudah.setChecked(true);
+        }
         date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -61,16 +70,19 @@ public class EditData extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = edtName.getText().toString();
-                String status = edtStatus.getText().toString();
                 String date = edtDate.getText().toString();
                 String id = getIntent().getStringExtra("idtodo");
+                String status = "";
+                if (RbSudah.isChecked()){
+                    status = "1";
+                }else{
+                    status = "0";
+                }
 
 
-                if (name.equals("")||status.equals("")||date.equals("")){
+                if (name.equals("")||date.equals("")){
                     if (name.equals("")){
                         edtName.setError("judul Harus di isi");
-                    } if (status.equals("")){
-                        edtName.setError("deskripsi Harus di isi");
                     } if (date.equals("")){
                         edtDate.setError("tanggal Harus di isi");
                     }

@@ -47,12 +47,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <RadioButton
+                android:id="@+id/sudah"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:layout_marginRight="12dp"
                 android:text="Sudah dilaksanakan"/>
             <RadioButton
+                android:id="@+id/belum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Belum dilaksanakan"/>
