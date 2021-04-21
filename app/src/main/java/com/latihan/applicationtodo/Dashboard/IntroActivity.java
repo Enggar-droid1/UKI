@@ -26,11 +26,11 @@ public class IntroActivity extends AppCompatActivity {
     //untuk mendeklarasikan semua variable yang dibutuhkan
 
     private ViewPager screenPager;
-    IntroViewPagerAdapter introViewPagerAdapter ;
+    IntroViewPagerAdapter introViewPagerAdapter;
     TabLayout tabIndicator;
-    int position = 0 ;
+    int position = 0;
     Button btnMulai, btnSelanjutnya;
-    Animation btnAnim ;
+    Animation btnAnim;
     TextView tvSkip;
 
     @Override
@@ -47,7 +47,7 @@ public class IntroActivity extends AppCompatActivity {
 
         if (restorePrefData()) {
 
-            Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class );
+            Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(mainActivity);
             finish();
 
@@ -62,18 +62,18 @@ public class IntroActivity extends AppCompatActivity {
         btnSelanjutnya = findViewById(R.id.btn_next);
         btnMulai = findViewById(R.id.btn_get_started);
         tabIndicator = findViewById(R.id.tab_indicator);
-        btnAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.button_animation);
+        btnAnim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.button_animation);
         tvSkip = findViewById(R.id.tv_skip);
 
         // mengisi layar daftar
 
         final List<ItemScreen> mList = new ArrayList<>();
-        mList.add(new ItemScreen("Selamat Datang ","Di aplikais Todo Duty, dengan Aplikasi ini anda dapat mencatat tugas sehari-harimu  ",R.drawable.image1));
-        mList.add(new ItemScreen("Apa yang bisa di lakukan aplikasi ini?","Aplikasi bisa mengedit, menghapus, membuat, dan mencaricatat tugas sehari-harimu ",R.drawable.image2));
+        mList.add(new ItemScreen("Selamat Datang ", "Di aplikais Todo Duty, dengan Aplikasi ini anda dapat mencatat tugas sehari-harimu  ", R.drawable.image1));
+        mList.add(new ItemScreen("Apa yang bisa di lakukan aplikasi ini?", "Aplikasi bisa mengedit, menghapus, membuat, dan mencaricatat tugas sehari-harimu ", R.drawable.image2));
 
         // atur viewpager
-        screenPager =findViewById(R.id.screen_viewpager);
-        introViewPagerAdapter = new IntroViewPagerAdapter(this,mList);
+        screenPager = findViewById(R.id.screen_viewpager);
+        introViewPagerAdapter = new IntroViewPagerAdapter(this, mList);
         screenPager.setAdapter(introViewPagerAdapter);
 
         // setup tablayout dengan viewpager
@@ -95,7 +95,7 @@ public class IntroActivity extends AppCompatActivity {
 
                 }
 
-                if (position == mList.size()-1) { // when we rech to the last screen
+                if (position == mList.size() - 1) { // when we rech to the last screen
 
                     // TODO : show the GETSTARTED Button and hide the indicator and the next button
 
@@ -103,7 +103,6 @@ public class IntroActivity extends AppCompatActivity {
 
 
                 }
-
 
 
             }
@@ -116,7 +115,7 @@ public class IntroActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
-                if (tab.getPosition() == mList.size()-1) {
+                if (tab.getPosition() == mList.size() - 1) {
 
                     loaddLastScreen();
 
@@ -137,7 +136,6 @@ public class IntroActivity extends AppCompatActivity {
         });
 
 
-
         // button mulai
 
         btnMulai.setOnClickListener(new View.OnClickListener() {
@@ -147,13 +145,12 @@ public class IntroActivity extends AppCompatActivity {
 
                 //membuka main activity
 
-                Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+                Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(mainActivity);
                 // kita juga perlu menyimpan nilai boolean ke penyimpanan sehingga lain kali saat pengguna menjalankan aplikasi
                 // kita bisa tahu bahwa dia sudah memeriksa aktivitas layar intro
                 savePrefsData();
                 finish();
-
 
 
             }
@@ -169,25 +166,23 @@ public class IntroActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     private boolean restorePrefData() {
 
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
-        Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend",false);
-        return  isIntroActivityOpnendBefore;
-
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
+        Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend", false);
+        return isIntroActivityOpnendBefore;
 
 
     }
 
     private void savePrefsData() {
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
-        editor.putBoolean("isIntroOpnend",true);
+        editor.putBoolean("isIntroOpnend", true);
         editor.commit();
 
 
@@ -203,7 +198,6 @@ public class IntroActivity extends AppCompatActivity {
         // TODO : ADD an animation the getstarted button
         // penyiapan animasi
         btnMulai.setAnimation(btnAnim);
-
 
 
     }

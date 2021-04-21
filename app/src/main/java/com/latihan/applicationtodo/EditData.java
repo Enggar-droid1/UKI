@@ -80,7 +80,7 @@ public class EditData extends AppCompatActivity {
                     status = "0";
                 }
 
-                    //untuk menampilkan peringatan saat edit tect tidak di isi
+                //untuk menampilkan peringatan saat edit tect tidak di isi
                 if (name.equals("") || date.equals("")) {
                     if (name.equals("")) {
                         edtName.setError("nama tugas tidak boleh kosong");
@@ -119,6 +119,7 @@ public class EditData extends AppCompatActivity {
         });
 
     }
+
     //untuk mengupdate tanggal
     private void updateLabel() {
         String myFormat = "dd-MM-yyyy";

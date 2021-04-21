@@ -1,6 +1,7 @@
 package com.latihan.applicationtodo.Dashboard;
 
-public class ItemScreen { String Title,Description;
+public class ItemScreen {
+    String Title, Description;
     int ScreenImg;
 
     public ItemScreen(String title, String description, int screenImg) {

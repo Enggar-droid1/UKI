@@ -14,10 +14,12 @@
         android:padding="4dp">
 
         <EditText
+            android:paddingLeft="12sp"
             android:id="@+id/search"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="end"
+            android:hint="Search"
             android:background="@drawable/bg_search"></EditText>
     </RelativeLayout>
 

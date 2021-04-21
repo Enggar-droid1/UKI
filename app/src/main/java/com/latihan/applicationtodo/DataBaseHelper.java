@@ -55,6 +55,7 @@ class DataBaseHelper extends SQLiteOpenHelper {
         onCreate(db);
 
     }
+
     //fungsi untuk mengupdate data di table
     public boolean updateData(String name, String status, String date, String id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -93,7 +94,7 @@ class DataBaseHelper extends SQLiteOpenHelper {
 
     }
 
-        //fungsi untuk mangambil data pada table
+    //fungsi untuk mangambil data pada table
     public List<Todo> getAllData() {
         List<Todo> todos = new ArrayList<>();
         String selectQuery = "SELECT * FROM TODO_TABLE";
@@ -114,7 +115,8 @@ class DataBaseHelper extends SQLiteOpenHelper {
         return todos;
 
     }
-        //untuk mencari data dari table berdasarkan keyword
+
+    //untuk mencari data dari table berdasarkan keyword
     public List<Todo> search(String keyword) {
         List<Todo> todos = new ArrayList<>();
         String selectQuery = "SELECT * FROM TODO_TABLE WHERE NAME LIKE ?";
@@ -134,7 +136,7 @@ class DataBaseHelper extends SQLiteOpenHelper {
         return todos;
     }
 
-        //untuk menghapus data
+    //untuk menghapus data
     public int deleteData(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
