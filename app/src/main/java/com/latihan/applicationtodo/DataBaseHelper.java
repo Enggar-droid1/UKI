@@ -41,7 +41,7 @@ class DataBaseHelper extends SQLiteOpenHelper {
                 "keytodo text);");
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, "pergi");
-        contentValues.put(COL_3, "pergi keluar");
+        contentValues.put(COL_3, "Sudah di kerjakan");
         contentValues.put(COL_4, "12-04-2021");
         contentValues.put(COL_5, "1312");
         db.insert(TABLE_NAME, null, contentValues);
